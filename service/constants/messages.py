@@ -39,4 +39,5 @@ class ExceptionMessages:
     NEW_AND_CONFIRM_PASS_NOT_MATCH = "New password and confirm password do not match"
     NEW_PASS_CANT_BE_EXISTING = "New password can't be your existing password"
     ERROR_WHILE_DELETING = "Error While deleting user : {}"
-    ACCOUNT_WAS_DELETED = "Your account was deleted. Please reach out at utkarshbhardwajmail@gmail.com" 
+    ACCOUNT_WAS_DELETED = "Your account was deleted. Please reach out at utkarshbhardwajmail@gmail.com"
+    UPLOAD_LIMIT_EXCEEDED = "Upload limit has been exceeded"

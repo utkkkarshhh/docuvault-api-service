@@ -5,11 +5,13 @@ from rest_framework import status
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.views import APIView
 
-from service.constants import ExceptionMessages, ResponseMessages
+from service.constants import (DocumentServiceEndpoints, ExceptionMessages,
+                               ResponseMessages)
 from service.exceptions import BadRequestException
-from service.models import Users, UserActiveToken
+from service.models import UserActiveToken, Users
 from service.serializers import DeleteUserSerializer
-from service.utils import CommonUtils, ResponseHandler, get_token_data, logger
+from service.utils import (CommonUtils, HTTPClient, ResponseHandler,
+                           get_token_data, logger)
 
 
 class DeleteUserView(APIView):
@@ -46,6 +48,7 @@ class DeleteUserView(APIView):
             try:
                 self._delete_user(user, validated_data)
                 self._delete_all_active_token(user)
+                self._delete_all_user_documets(user)
             except Exception as e:
                 logger.exception(ExceptionMessages.ERROR_WHILE_DELETING.format(e))
                 raise BadRequestException(ExceptionMessages.ERROR_WHILE_DELETING.format(e))
@@ -59,3 +62,9 @@ class DeleteUserView(APIView):
 
     def _delete_all_active_token(self, user):
         UserActiveToken.objects.filter(user_id=user.id).delete()
+
+    def _delete_all_user_documets(self, user):
+        response = HTTPClient.request(
+            method='POST',
+            url = DocumentServiceEndpoints.DELETE_ALL_DOCUMENTS.format(user_id=user.id)
+        )
