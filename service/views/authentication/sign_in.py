@@ -41,6 +41,7 @@ class SignIn(APIView):
         )
         
     def _validate_login(self, identifier, password):
+        self._deleted_user_login(identifier)
         user = Users.objects.filter(
             Q(username=identifier) | Q(email=identifier)
         ).first()
@@ -78,3 +79,10 @@ class SignIn(APIView):
             token=token,
             is_active = True
         )
+
+    def _deleted_user_login(self, identifier):
+        user = Users.objects.filter(
+            Q(username=identifier) | Q(email=identifier), is_deleted=True
+        ).first()
+        if user:
+            raise BadRequestException(ExceptionMessages.ACCOUNT_WAS_DELETED)

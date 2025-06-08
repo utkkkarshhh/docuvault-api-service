@@ -11,4 +11,7 @@ urlpatterns = [
     
     # User APIs
     path('User/Details', UserDetailsView.as_view(), name='user_details'),
+    path('User/Details/Update', UpdateUserDetailsView.as_view(), name="update_user_details"),
+    path('User/Password/Update', UpdateUserPasswordView.as_view(), name="update_user_password"),
+    path('User/Delete', DeleteUserView.as_view(), name="delete_user"),
 ]

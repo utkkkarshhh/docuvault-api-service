@@ -18,7 +18,7 @@ class UserDetailsView(APIView):
         user_id = token_data.get('user_id')
 
         try:
-            user = self.queryset.get(id=user_id)
+            user = self.queryset.get(id=user_id, is_deleted=False)
         except Users.DoesNotExist:
             return ResponseHandler(
                 success=False,
