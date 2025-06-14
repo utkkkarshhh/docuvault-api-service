@@ -9,7 +9,7 @@ from service.models import UserLimit, Users
 from service.serializers import UploadDocumentSerializer
 from service.utils import (CommonUtils, HTTPClient, ResponseHandler,
                            get_token_data)
-
+from django.db import connection
 
 class UploadDocumentView(APIView):
     permission_classes = [IsAuthenticated]
@@ -22,6 +22,10 @@ class UploadDocumentView(APIView):
     def post(self, request, *args, **kwargs):
         token_data = get_token_data(request)
         user_id = token_data.get('user_id')
+
+        with connection.cursor() as cursor:
+            cursor.execute("SELECT table_schema, table_name FROM information_schema.tables WHERE table_name = 'user_limit'")
+            print("📋 Table check:", cursor.fetchall())
 
         user = self.get_user(user_id)
         if not user:
