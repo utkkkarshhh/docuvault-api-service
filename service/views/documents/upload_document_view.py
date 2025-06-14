@@ -33,7 +33,7 @@ class UploadDocumentView(APIView):
             raise BadRequestException(errors)
 
         user_limit, created = UserLimit.objects.get_or_create(
-            user=user,
+            user_id=user_id,
             defaults={'upload_limit_count': DocumentConstants.DEFAULT_UPLOAD_LIMIT}
         )
         if not created and user_limit.upload_limit_count <= 0:
