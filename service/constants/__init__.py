@@ -7,8 +7,9 @@ __all__ = [
     "AuthConstants",
     "ExceptionMessages",
     "DocumentServiceEndpoints",
+    "OTPConstants",
 ]
 
-from service.constants.constants import Constants, DocumentConstants, AuthConstants, DocumentServiceEndpoints
+from service.constants.constants import Constants, DocumentConstants, AuthConstants, DocumentServiceEndpoints, OTPConstants
 from service.constants.messages import ResponseMessages, HTTPResponseMessages, ExceptionMessages
 from service.constants.http import HTTPStatusCodes

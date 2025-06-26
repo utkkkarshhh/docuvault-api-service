@@ -13,6 +13,7 @@ class Users(BaseModel):
     is_deleted = models.BooleanField(null=True, default=False)
     reason_for_deletion = models.CharField(max_length=255, null=True, blank=True) 
     deleted_at = models.DateField(null=True, blank=True)
+    is_o_auth = models.BooleanField(null=True, default=False)
     
     class Meta:
         db_table = 'users'

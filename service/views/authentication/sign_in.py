@@ -45,6 +45,7 @@ class SignIn(APIView):
         user = Users.objects.filter(
             Q(username=identifier) | Q(email=identifier)
         ).first()
+        self._check_o_auth_user(user)
         if not user:
             raise BadRequestException(ExceptionMessages.INCORRECT_USERNAME_OR_EMAIL)
         self._check_password(user, password)
@@ -86,3 +87,7 @@ class SignIn(APIView):
         ).first()
         if user:
             raise BadRequestException(ExceptionMessages.ACCOUNT_WAS_DELETED)
+
+    def _check_o_auth_user(self, user):
+        if user.is_o_auth is True:
+            raise BadRequestException(ExceptionMessages.LOGIN_USING_GOOGLE)

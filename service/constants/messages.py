@@ -7,6 +7,7 @@ class ResponseMessages:
     PASSWORD_UPDATED_SUCCESSFULLY = "Password updated successfully"
     PASSWORD_NOT_UPDATED = "Password not updated. Please try again later"
     USER_DELETED_SUCCESSFULLY = "User deleted successfully"
+    OTP_SENT_SUCCESSFULLY = "OTP sent successfully"
 
 class HTTPResponseMessages:
     HTTP_REQUEST_ERROR = "Error while making HTTP request"
@@ -41,3 +42,8 @@ class ExceptionMessages:
     ERROR_WHILE_DELETING = "Error While deleting user : {}"
     ACCOUNT_WAS_DELETED = "Your account was deleted. Please reach out at utkarshbhardwajmail@gmail.com"
     UPLOAD_LIMIT_EXCEEDED = "Upload limit has been exceeded"
+    INVALID_ID_TOKEN = "Invalid Client ID for OAuth"
+    EMAIL_REQUIRED = "Email is required"
+    LOGIN_USING_GOOGLE = "User already exists. Please login using Google"
+    NOT_ALLOWED_FOR_OAUTH_USER = "{} updation not allowed for OAuth Users"
+    OTP_ALREADY_SENT_PLEASE_WAIT = "OTP has already been sent recently. Please wait a few seconds before requesting again."

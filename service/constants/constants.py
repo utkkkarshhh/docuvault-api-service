@@ -2,7 +2,6 @@ import os
 
 class Constants:
     pass
-
 class DocumentConstants:
     DEFAULT_UPLOAD_LIMIT = 6
 
@@ -21,3 +20,10 @@ class DocumentServiceEndpoints:
     DOCUMENT_LISTING = f'{DOCUMENT_SERVICE_BASE_URL}/api/v1/Doc/DocumentList/{{user_id}}'
     CONVERT_DOCUMENT = f'{DOCUMENT_SERVICE_BASE_URL}/api/v1/Doc/ConvertDocument'
     
+class OTPConstants:
+    RESET_PASSWORD_OTP_WAIT_TIME = os.getenv('RESET_PASSWORD_OTP_WAIT_TIME')
+    RESET_PASSWORD_OTP_EXPIRY_MINUTES = 3
+
+    OTP_TYPES = {
+        "PASSWORD_RESET": "password_reset"
+    }

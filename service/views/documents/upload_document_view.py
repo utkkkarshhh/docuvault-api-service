@@ -46,7 +46,7 @@ class UploadDocumentView(APIView):
         validated_data = serializer.validated_data
         data = {
             "name": validated_data["name"],
-            "description": validated_data["description"],
+            "description": validated_data.get("description") or None,
             "type": validated_data["type"],
             "user_id": user_id
         }

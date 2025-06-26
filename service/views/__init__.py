@@ -2,6 +2,7 @@ __all__ = [
     "HealthCheck",
     "SignUp",
     "SignIn",
+    "GoogleOAuthView",
     "UserDetailsView",
     "UpdateUserDetailsView",
     "UpdateUserPasswordView",
@@ -11,6 +12,7 @@ __all__ = [
     "UploadDocumentView",
     "DeleteDocumentView",
     "DownloadDocumentView",
+    "ForgetPasswordView",
 ]
 
 # Generic Views
@@ -19,11 +21,13 @@ from service.views.healthcheck import HealthCheck
 # Authentication Views
 from service.views.authentication.sign_up import SignUp
 from service.views.authentication.sign_in import SignIn
+from service.views.authentication.update_user_password_view import UpdateUserPasswordView
+from service.views.authentication.google_oauth_view import GoogleOAuthView
+from service.views.authentication.forget_password_view import ForgetPasswordView
 
 # User Views
 from service.views.user.user_details_view import UserDetailsView
 from service.views.user.update_user_details_view import UpdateUserDetailsView
-from service.views.user.update_user_password_view import UpdateUserPasswordView
 from service.views.user.delete_user_view import DeleteUserView
 
 # Documents

@@ -31,6 +31,7 @@ class UpdateUserPasswordView(APIView):
         if not user_object.exists():
             raise BadRequestException(ExceptionMessages.USER_NOT_FOUND)
         user = user_object.first()
+        self._check_if_o_auth_user(user)
         is_updated = self._update_user_password(user, validated_data)
         if not is_updated:
             return ResponseHandler(
@@ -62,3 +63,7 @@ class UpdateUserPasswordView(APIView):
         user.password = make_password(new_password)
         user.save()
         return 1
+
+    def _check_if_o_auth_user(self, user):
+        if user.is_o_auth is True:
+            raise BadRequestException(ExceptionMessages.NOT_ALLOWED_FOR_OAUTH_USER.format('Password'))

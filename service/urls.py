@@ -8,6 +8,8 @@ urlpatterns = [
     # Auth APIs
     path('SignUp', SignUp.as_view(), name='sign_up'),
     path('SignIn', SignIn.as_view(), name='sign_in'),
+    path('Google/OAuth', GoogleOAuthView.as_view(), name='google_oauth'),
+    path('ForgetPassword', ForgetPasswordView.as_view(), name='forget_password'),
     
     # User APIs
     path('User/Details', UserDetailsView.as_view(), name='user_details'),

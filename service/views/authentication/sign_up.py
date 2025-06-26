@@ -41,6 +41,8 @@ class SignUp(APIView):
         ).first()
 
         if existing_user:
+            if existing_user.is_o_auth == True:
+                raise BadRequestException(ExceptionMessages.LOGIN_USING_GOOGLE)
             if existing_user.username == username:
                 raise BadRequestException(ExceptionMessages.USERNAME_ALREADY_EXISTS)
             if existing_user.email == email:
