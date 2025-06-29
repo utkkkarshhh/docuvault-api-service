@@ -8,6 +8,7 @@ class ResponseMessages:
     PASSWORD_NOT_UPDATED = "Password not updated. Please try again later"
     USER_DELETED_SUCCESSFULLY = "User deleted successfully"
     OTP_SENT_SUCCESSFULLY = "OTP sent successfully"
+    OTP_VERIFIED_SUCCESSFULLY = "OTP has been verified successfully"
 
 class HTTPResponseMessages:
     HTTP_REQUEST_ERROR = "Error while making HTTP request"
@@ -37,7 +38,7 @@ class ExceptionMessages:
     TOKEN_NOT_ACTIVE_INVALID = "Token is not active or invalid"
     NO_TOKEN_DATA = "No token data found in request object"
     USER_NOT_FOUND = "User not found"
-    NEW_AND_CONFIRM_PASS_NOT_MATCH = "New password and confirm password do not match"
+    NEW_AND_CONFIRM_PASS_NOT_MATCH = "New passwords don't match"
     NEW_PASS_CANT_BE_EXISTING = "New password can't be your existing password"
     ERROR_WHILE_DELETING = "Error While deleting user : {}"
     ACCOUNT_WAS_DELETED = "Your account was deleted. Please reach out at utkarshbhardwajmail@gmail.com"
@@ -47,3 +48,6 @@ class ExceptionMessages:
     LOGIN_USING_GOOGLE = "User already exists. Please login using Google"
     NOT_ALLOWED_FOR_OAUTH_USER = "{} updation not allowed for OAuth Users"
     OTP_ALREADY_SENT_PLEASE_WAIT = "OTP has already been sent recently. Please wait a few seconds before requesting again."
+    INVALID_OTP = "OTP is invalid"
+    EXPIRED_OTP = "OTP has expired"
+    ALREADY_USED_OTP = "OTP has already been used"

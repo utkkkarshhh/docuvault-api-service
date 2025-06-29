@@ -3,6 +3,7 @@ from django.urls import path
 from service.views import *
 
 urlpatterns = [
+    # Generic APIs
     path('Healthcheck', HealthCheck.as_view(), name='healthcheck'),
     
     # Auth APIs
@@ -10,6 +11,8 @@ urlpatterns = [
     path('SignIn', SignIn.as_view(), name='sign_in'),
     path('Google/OAuth', GoogleOAuthView.as_view(), name='google_oauth'),
     path('ForgetPassword', ForgetPasswordView.as_view(), name='forget_password'),
+    path('VerifyOTP', VerifyOTPView.as_view(), name='verify_otp'),
+    path('ResetPassword', ResetPasswordView.as_view(), name='reset_password'),
     
     # User APIs
     path('User/Details', UserDetailsView.as_view(), name='user_details'),
