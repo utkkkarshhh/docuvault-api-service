@@ -7,6 +7,7 @@ from service.exceptions import BadRequestException
 class ResetPasswordSerializer(serializers.Serializer):
     new_password = serializers.CharField(required=True)
     confirm_new_password = serializers.CharField(required=True)
+    reset_password_token = serializers.CharField(required=True)
 
     def validate_new_password(self, value):
         if len(value) < 8:

@@ -15,3 +15,12 @@ class JWT:
         
         token = jwt.encode(payload, settings.JWT_SECRET_KEY, algorithm='HS256')
         return token
+    
+    def generate_reset_token(user_id):
+        payload = {
+            "user_id": user_id,
+            "purpose": "password_reset",
+            "exp": datetime.utcnow() + timedelta(minutes=1),
+            "iat": datetime.utcnow()
+        }
+        return jwt.encode(payload, settings.JWT_SECRET_KEY, algorithm="HS256")

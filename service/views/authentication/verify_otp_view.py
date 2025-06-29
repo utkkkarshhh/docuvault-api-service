@@ -8,8 +8,7 @@ from service.constants import ExceptionMessages, ResponseMessages
 from service.exceptions import BadRequestException
 from service.models import UserOTP, Users
 from service.serializers import VerifyOTPSerializer
-from service.utils import CommonUtils, ResponseHandler
-
+from service.utils import CommonUtils, ResponseHandler, JWT
 
 class VerifyOTPView(APIView):
     serializer_class = VerifyOTPSerializer
@@ -39,10 +38,13 @@ class VerifyOTPView(APIView):
         active_otp.is_used = True
         active_otp.save()
 
+        response_data = self.get_otp_type_response(otp_type, user_object)
+
         return ResponseHandler(
             status=status.HTTP_200_OK,
             success=True,
-            message=ResponseMessages.OTP_VERIFIED_SUCCESSFULLY
+            message=ResponseMessages.OTP_VERIFIED_SUCCESSFULLY,
+            data=response_data
         )
 
     def get_active_otp(self, user_object, otp, otp_type):
@@ -54,8 +56,21 @@ class VerifyOTPView(APIView):
 
         if not active_otp:
             raise BadRequestException(ExceptionMessages.INVALID_OTP)
-        if active_otp.is_used == True:
+        if active_otp.is_used:
             raise BadRequestException(ExceptionMessages.ALREADY_USED_OTP)
         if active_otp.expires_at < timezone.now():
             raise BadRequestException(ExceptionMessages.EXPIRED_OTP)
+
         return active_otp
+
+    def get_otp_type_response(self, otp_type, user):
+        """
+        Customized response based on otp_type
+        """
+        if otp_type == "password_reset":
+            token = JWT.generate_reset_token(user.id)
+            return {
+                "reset_token": token,
+                "expires_in": 600
+            }
+        return None
